@@ -2,11 +2,12 @@ package com.heygis.service;
 
 import java.io.FileOutputStream;
 import java.io.OutputStream;
+import java.util.Base64;
 
 import com.heygis.beans.User;
 import com.heygis.dao.UserDAOImpl;
 
-import sun.misc.BASE64Decoder;
+
 
 
 public class UserIconService {
@@ -28,10 +29,10 @@ public class UserIconService {
 		if (base64 == null) { // 图像数据为空
 			return false;
 		}
-		BASE64Decoder decoder = new BASE64Decoder();
+		Base64.Decoder decoder = Base64.getDecoder();
 		try {
 			// Base64解码
-			byte[] bytes = decoder.decodeBuffer(base64);
+			byte[] bytes = decoder.decode(base64);
 			for (int i = 0; i < bytes.length; ++i) {
 				if (bytes[i] < 0) {// 调整异常数据
 					bytes[i] += 256;

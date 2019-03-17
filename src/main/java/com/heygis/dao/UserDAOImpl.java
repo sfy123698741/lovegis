@@ -5,7 +5,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+import java.util.Base64;
 //import Decoder.BASE64Encoder;
 
 import com.heygis.beans.User;
@@ -164,10 +164,15 @@ public class UserDAOImpl extends DAOSupport implements UserDAO{
 	
 	public String EncoderByMd5(String str) throws NoSuchAlgorithmException, UnsupportedEncodingException{
 		 //确定计算方法
-		 MessageDigest md5=MessageDigest.getInstance("MD5");
-		// BASE64Encoder base64en = new BASE64Encoder(); sfy 
+		// MessageDigest md5=MessageDigest.getInstance("MD5");
+		
+	    // BASE64Encoder base64en = new BASE64Encoder(); 
+		 Base64.Encoder encoder = Base64.getEncoder();//sfy 
+		 
 		 //加密后的字符串
-		 String newstr=base64en.encode(md5.digest(str.getBytes("utf-8")));
+		 //String newstr=base64en.encode(md5.digest(str.getBytes("utf-8")));
+		 
+		 String newstr = encoder.encodeToString(str.getBytes("utf-8"));//sfy 
 		 return newstr;
 	 }
 
