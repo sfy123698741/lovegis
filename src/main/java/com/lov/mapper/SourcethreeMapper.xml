@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.taotao.mapper.SourcethreeMapper" >
+  <resultMap id="BaseResultMap" type="com.lovegis.pojo.Sourcethree" >
+    <id column="r_id" property="rId" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="introduction" property="introduction" jdbcType="VARCHAR" />
+    <result column="file_size" property="fileSize" jdbcType="VARCHAR" />
+    <result column="download_link" property="downloadLink" jdbcType="VARCHAR" />
+    <result column="download_link_offical" property="downloadLinkOffical" jdbcType="VARCHAR" />
+    <result column="icon" property="icon" jdbcType="VARCHAR" />
+    <result column="cracking" property="cracking" jdbcType="BIT" />
+    <result column="upload_time" property="uploadTime" jdbcType="VARCHAR" />
+    <result column="download_times" property="downloadTimes" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    r_id, name, introduction, file_size, download_link, download_link_offical, icon, 
+    cracking, upload_time, download_times
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.lovegis.pojo.SourcethreeExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sourcethree
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sourcethree
+    where r_id = #{rId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sourcethree
+    where r_id = #{rId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.lovegis.pojo.SourcethreeExample" >
+    delete from sourcethree
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.lovegis.pojo.Sourcethree" >
+    insert into sourcethree (r_id, name, introduction, 
+      file_size, download_link, download_link_offical, 
+      icon, cracking, upload_time, 
+      download_times)
+    values (#{rId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{introduction,jdbcType=VARCHAR}, 
+      #{fileSize,jdbcType=VARCHAR}, #{downloadLink,jdbcType=VARCHAR}, #{downloadLinkOffical,jdbcType=VARCHAR}, 
+      #{icon,jdbcType=VARCHAR}, #{cracking,jdbcType=BIT}, #{uploadTime,jdbcType=VARCHAR}, 
+      #{downloadTimes,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lovegis.pojo.Sourcethree" >
+    insert into sourcethree
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="rId != null" >
+        r_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="introduction != null" >
+        introduction,
+      </if>
+      <if test="fileSize != null" >
+        file_size,
+      </if>
+      <if test="downloadLink != null" >
+        download_link,
+      </if>
+      <if test="downloadLinkOffical != null" >
+        download_link_offical,
+      </if>
+      <if test="icon != null" >
+        icon,
+      </if>
+      <if test="cracking != null" >
+        cracking,
+      </if>
+      <if test="uploadTime != null" >
+        upload_time,
+      </if>
+      <if test="downloadTimes != null" >
+        download_times,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="rId != null" >
+        #{rId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="introduction != null" >
+        #{introduction,jdbcType=VARCHAR},
+      </if>
+      <if test="fileSize != null" >
+        #{fileSize,jdbcType=VARCHAR},
+      </if>
+      <if test="downloadLink != null" >
+        #{downloadLink,jdbcType=VARCHAR},
+      </if>
+      <if test="downloadLinkOffical != null" >
+        #{downloadLinkOffical,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null" >
+        #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="cracking != null" >
+        #{cracking,jdbcType=BIT},
+      </if>
+      <if test="uploadTime != null" >
+        #{uploadTime,jdbcType=VARCHAR},
+      </if>
+      <if test="downloadTimes != null" >
+        #{downloadTimes,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.lovegis.pojo.SourcethreeExample" resultType="java.lang.Integer" >
+    select count(*) from sourcethree
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sourcethree
+    <set >
+      <if test="record.rId != null" >
+        r_id = #{record.rId,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.introduction != null" >
+        introduction = #{record.introduction,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fileSize != null" >
+        file_size = #{record.fileSize,jdbcType=VARCHAR},
+      </if>
+      <if test="record.downloadLink != null" >
+        download_link = #{record.downloadLink,jdbcType=VARCHAR},
+      </if>
+      <if test="record.downloadLinkOffical != null" >
+        download_link_offical = #{record.downloadLinkOffical,jdbcType=VARCHAR},
+      </if>
+      <if test="record.icon != null" >
+        icon = #{record.icon,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cracking != null" >
+        cracking = #{record.cracking,jdbcType=BIT},
+      </if>
+      <if test="record.uploadTime != null" >
+        upload_time = #{record.uploadTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.downloadTimes != null" >
+        download_times = #{record.downloadTimes,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sourcethree
+    set r_id = #{record.rId,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      introduction = #{record.introduction,jdbcType=VARCHAR},
+      file_size = #{record.fileSize,jdbcType=VARCHAR},
+      download_link = #{record.downloadLink,jdbcType=VARCHAR},
+      download_link_offical = #{record.downloadLinkOffical,jdbcType=VARCHAR},
+      icon = #{record.icon,jdbcType=VARCHAR},
+      cracking = #{record.cracking,jdbcType=BIT},
+      upload_time = #{record.uploadTime,jdbcType=VARCHAR},
+      download_times = #{record.downloadTimes,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lovegis.pojo.Sourcethree" >
+    update sourcethree
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="introduction != null" >
+        introduction = #{introduction,jdbcType=VARCHAR},
+      </if>
+      <if test="fileSize != null" >
+        file_size = #{fileSize,jdbcType=VARCHAR},
+      </if>
+      <if test="downloadLink != null" >
+        download_link = #{downloadLink,jdbcType=VARCHAR},
+      </if>
+      <if test="downloadLinkOffical != null" >
+        download_link_offical = #{downloadLinkOffical,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null" >
+        icon = #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="cracking != null" >
+        cracking = #{cracking,jdbcType=BIT},
+      </if>
+      <if test="uploadTime != null" >
+        upload_time = #{uploadTime,jdbcType=VARCHAR},
+      </if>
+      <if test="downloadTimes != null" >
+        download_times = #{downloadTimes,jdbcType=INTEGER},
+      </if>
+    </set>
+    where r_id = #{rId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lovegis.pojo.Sourcethree" >
+    update sourcethree
+    set name = #{name,jdbcType=VARCHAR},
+      introduction = #{introduction,jdbcType=VARCHAR},
+      file_size = #{fileSize,jdbcType=VARCHAR},
+      download_link = #{downloadLink,jdbcType=VARCHAR},
+      download_link_offical = #{downloadLinkOffical,jdbcType=VARCHAR},
+      icon = #{icon,jdbcType=VARCHAR},
+      cracking = #{cracking,jdbcType=BIT},
+      upload_time = #{uploadTime,jdbcType=VARCHAR},
+      download_times = #{downloadTimes,jdbcType=INTEGER}
+    where r_id = #{rId,jdbcType=INTEGER}
+  </update>
+</mapper>

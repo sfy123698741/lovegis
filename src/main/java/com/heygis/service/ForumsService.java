@@ -5,13 +5,14 @@ import java.util.Date;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.springframework.stereotype.Service;
 
 import com.heygis.beans.ForumPost;
 import com.heygis.beans.ForumThread;
 import com.heygis.beans.ForumsThreadPage;
 import com.heygis.dao.ForumThreadDAOImpl;
 import com.heygis.dao.interfaces.ForumThreadDAO;
-
+@Service
 public class ForumsService {
 	ForumThreadDAO forumThreadDAO = null;
 	public ForumsService(){

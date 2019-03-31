@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.taotao.mapper.ForumThreadMapper" >
+  <resultMap id="BaseResultMap" type="com.lovegis.pojo.ForumThread" >
+    <id column="tid" property="tid" jdbcType="INTEGER" />
+    <result column="fid" property="fid" jdbcType="INTEGER" />
+    <result column="typeid" property="typeid" jdbcType="SMALLINT" />
+    <result column="sortid" property="sortid" jdbcType="SMALLINT" />
+    <result column="author" property="author" jdbcType="VARCHAR" />
+    <result column="author_uid" property="authorUid" jdbcType="INTEGER" />
+    <result column="author_account" property="authorAccount" jdbcType="VARCHAR" />
+    <result column="subject" property="subject" jdbcType="VARCHAR" />
+    <result column="dateline" property="dateline" jdbcType="BIGINT" />
+    <result column="lastpost" property="lastpost" jdbcType="BIGINT" />
+    <result column="lastposter" property="lastposter" jdbcType="VARCHAR" />
+    <result column="views" property="views" jdbcType="INTEGER" />
+    <result column="replies" property="replies" jdbcType="INTEGER" />
+    <result column="attachment" property="attachment" jdbcType="TINYINT" />
+    <result column="closed" property="closed" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="SMALLINT" />
+    <result column="display" property="display" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    tid, fid, typeid, sortid, author, author_uid, author_account, subject, dateline, 
+    lastpost, lastposter, views, replies, attachment, closed, status, display
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.lovegis.pojo.ForumThreadExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from forum_thread
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from forum_thread
+    where tid = #{tid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from forum_thread
+    where tid = #{tid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.lovegis.pojo.ForumThreadExample" >
+    delete from forum_thread
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.lovegis.pojo.ForumThread" >
+    insert into forum_thread (tid, fid, typeid, 
+      sortid, author, author_uid, 
+      author_account, subject, dateline, 
+      lastpost, lastposter, views, 
+      replies, attachment, closed, 
+      status, display)
+    values (#{tid,jdbcType=INTEGER}, #{fid,jdbcType=INTEGER}, #{typeid,jdbcType=SMALLINT}, 
+      #{sortid,jdbcType=SMALLINT}, #{author,jdbcType=VARCHAR}, #{authorUid,jdbcType=INTEGER}, 
+      #{authorAccount,jdbcType=VARCHAR}, #{subject,jdbcType=VARCHAR}, #{dateline,jdbcType=BIGINT}, 
+      #{lastpost,jdbcType=BIGINT}, #{lastposter,jdbcType=VARCHAR}, #{views,jdbcType=INTEGER}, 
+      #{replies,jdbcType=INTEGER}, #{attachment,jdbcType=TINYINT}, #{closed,jdbcType=INTEGER}, 
+      #{status,jdbcType=SMALLINT}, #{display,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lovegis.pojo.ForumThread" >
+    insert into forum_thread
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="tid != null" >
+        tid,
+      </if>
+      <if test="fid != null" >
+        fid,
+      </if>
+      <if test="typeid != null" >
+        typeid,
+      </if>
+      <if test="sortid != null" >
+        sortid,
+      </if>
+      <if test="author != null" >
+        author,
+      </if>
+      <if test="authorUid != null" >
+        author_uid,
+      </if>
+      <if test="authorAccount != null" >
+        author_account,
+      </if>
+      <if test="subject != null" >
+        subject,
+      </if>
+      <if test="dateline != null" >
+        dateline,
+      </if>
+      <if test="lastpost != null" >
+        lastpost,
+      </if>
+      <if test="lastposter != null" >
+        lastposter,
+      </if>
+      <if test="views != null" >
+        views,
+      </if>
+      <if test="replies != null" >
+        replies,
+      </if>
+      <if test="attachment != null" >
+        attachment,
+      </if>
+      <if test="closed != null" >
+        closed,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="display != null" >
+        display,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="tid != null" >
+        #{tid,jdbcType=INTEGER},
+      </if>
+      <if test="fid != null" >
+        #{fid,jdbcType=INTEGER},
+      </if>
+      <if test="typeid != null" >
+        #{typeid,jdbcType=SMALLINT},
+      </if>
+      <if test="sortid != null" >
+        #{sortid,jdbcType=SMALLINT},
+      </if>
+      <if test="author != null" >
+        #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="authorUid != null" >
+        #{authorUid,jdbcType=INTEGER},
+      </if>
+      <if test="authorAccount != null" >
+        #{authorAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="subject != null" >
+        #{subject,jdbcType=VARCHAR},
+      </if>
+      <if test="dateline != null" >
+        #{dateline,jdbcType=BIGINT},
+      </if>
+      <if test="lastpost != null" >
+        #{lastpost,jdbcType=BIGINT},
+      </if>
+      <if test="lastposter != null" >
+        #{lastposter,jdbcType=VARCHAR},
+      </if>
+      <if test="views != null" >
+        #{views,jdbcType=INTEGER},
+      </if>
+      <if test="replies != null" >
+        #{replies,jdbcType=INTEGER},
+      </if>
+      <if test="attachment != null" >
+        #{attachment,jdbcType=TINYINT},
+      </if>
+      <if test="closed != null" >
+        #{closed,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=SMALLINT},
+      </if>
+      <if test="display != null" >
+        #{display,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.lovegis.pojo.ForumThreadExample" resultType="java.lang.Integer" >
+    select count(*) from forum_thread
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update forum_thread
+    <set >
+      <if test="record.tid != null" >
+        tid = #{record.tid,jdbcType=INTEGER},
+      </if>
+      <if test="record.fid != null" >
+        fid = #{record.fid,jdbcType=INTEGER},
+      </if>
+      <if test="record.typeid != null" >
+        typeid = #{record.typeid,jdbcType=SMALLINT},
+      </if>
+      <if test="record.sortid != null" >
+        sortid = #{record.sortid,jdbcType=SMALLINT},
+      </if>
+      <if test="record.author != null" >
+        author = #{record.author,jdbcType=VARCHAR},
+      </if>
+      <if test="record.authorUid != null" >
+        author_uid = #{record.authorUid,jdbcType=INTEGER},
+      </if>
+      <if test="record.authorAccount != null" >
+        author_account = #{record.authorAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.subject != null" >
+        subject = #{record.subject,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dateline != null" >
+        dateline = #{record.dateline,jdbcType=BIGINT},
+      </if>
+      <if test="record.lastpost != null" >
+        lastpost = #{record.lastpost,jdbcType=BIGINT},
+      </if>
+      <if test="record.lastposter != null" >
+        lastposter = #{record.lastposter,jdbcType=VARCHAR},
+      </if>
+      <if test="record.views != null" >
+        views = #{record.views,jdbcType=INTEGER},
+      </if>
+      <if test="record.replies != null" >
+        replies = #{record.replies,jdbcType=INTEGER},
+      </if>
+      <if test="record.attachment != null" >
+        attachment = #{record.attachment,jdbcType=TINYINT},
+      </if>
+      <if test="record.closed != null" >
+        closed = #{record.closed,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=SMALLINT},
+      </if>
+      <if test="record.display != null" >
+        display = #{record.display,jdbcType=TINYINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update forum_thread
+    set tid = #{record.tid,jdbcType=INTEGER},
+      fid = #{record.fid,jdbcType=INTEGER},
+      typeid = #{record.typeid,jdbcType=SMALLINT},
+      sortid = #{record.sortid,jdbcType=SMALLINT},
+      author = #{record.author,jdbcType=VARCHAR},
+      author_uid = #{record.authorUid,jdbcType=INTEGER},
+      author_account = #{record.authorAccount,jdbcType=VARCHAR},
+      subject = #{record.subject,jdbcType=VARCHAR},
+      dateline = #{record.dateline,jdbcType=BIGINT},
+      lastpost = #{record.lastpost,jdbcType=BIGINT},
+      lastposter = #{record.lastposter,jdbcType=VARCHAR},
+      views = #{record.views,jdbcType=INTEGER},
+      replies = #{record.replies,jdbcType=INTEGER},
+      attachment = #{record.attachment,jdbcType=TINYINT},
+      closed = #{record.closed,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=SMALLINT},
+      display = #{record.display,jdbcType=TINYINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lovegis.pojo.ForumThread" >
+    update forum_thread
+    <set >
+      <if test="fid != null" >
+        fid = #{fid,jdbcType=INTEGER},
+      </if>
+      <if test="typeid != null" >
+        typeid = #{typeid,jdbcType=SMALLINT},
+      </if>
+      <if test="sortid != null" >
+        sortid = #{sortid,jdbcType=SMALLINT},
+      </if>
+      <if test="author != null" >
+        author = #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="authorUid != null" >
+        author_uid = #{authorUid,jdbcType=INTEGER},
+      </if>
+      <if test="authorAccount != null" >
+        author_account = #{authorAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="subject != null" >
+        subject = #{subject,jdbcType=VARCHAR},
+      </if>
+      <if test="dateline != null" >
+        dateline = #{dateline,jdbcType=BIGINT},
+      </if>
+      <if test="lastpost != null" >
+        lastpost = #{lastpost,jdbcType=BIGINT},
+      </if>
+      <if test="lastposter != null" >
+        lastposter = #{lastposter,jdbcType=VARCHAR},
+      </if>
+      <if test="views != null" >
+        views = #{views,jdbcType=INTEGER},
+      </if>
+      <if test="replies != null" >
+        replies = #{replies,jdbcType=INTEGER},
+      </if>
+      <if test="attachment != null" >
+        attachment = #{attachment,jdbcType=TINYINT},
+      </if>
+      <if test="closed != null" >
+        closed = #{closed,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=SMALLINT},
+      </if>
+      <if test="display != null" >
+        display = #{display,jdbcType=TINYINT},
+      </if>
+    </set>
+    where tid = #{tid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lovegis.pojo.ForumThread" >
+    update forum_thread
+    set fid = #{fid,jdbcType=INTEGER},
+      typeid = #{typeid,jdbcType=SMALLINT},
+      sortid = #{sortid,jdbcType=SMALLINT},
+      author = #{author,jdbcType=VARCHAR},
+      author_uid = #{authorUid,jdbcType=INTEGER},
+      author_account = #{authorAccount,jdbcType=VARCHAR},
+      subject = #{subject,jdbcType=VARCHAR},
+      dateline = #{dateline,jdbcType=BIGINT},
+      lastpost = #{lastpost,jdbcType=BIGINT},
+      lastposter = #{lastposter,jdbcType=VARCHAR},
+      views = #{views,jdbcType=INTEGER},
+      replies = #{replies,jdbcType=INTEGER},
+      attachment = #{attachment,jdbcType=TINYINT},
+      closed = #{closed,jdbcType=INTEGER},
+      status = #{status,jdbcType=SMALLINT},
+      display = #{display,jdbcType=TINYINT}
+    where tid = #{tid,jdbcType=INTEGER}
+  </update>
+</mapper>

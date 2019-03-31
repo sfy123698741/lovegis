@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.taotao.mapper.ForumPostMapper" >
+  <resultMap id="BaseResultMap" type="com.lovegis.pojo.ForumPost" >
+    <id column="tid" property="tid" jdbcType="INTEGER" />
+    <id column="position" property="position" jdbcType="INTEGER" />
+    <result column="pid" property="pid" jdbcType="INTEGER" />
+    <result column="fid" property="fid" jdbcType="INTEGER" />
+    <result column="first" property="first" jdbcType="TINYINT" />
+    <result column="author" property="author" jdbcType="VARCHAR" />
+    <result column="author_uid" property="authorUid" jdbcType="INTEGER" />
+    <result column="author_account" property="authorAccount" jdbcType="VARCHAR" />
+    <result column="subject" property="subject" jdbcType="VARCHAR" />
+    <result column="dateline" property="dateline" jdbcType="BIGINT" />
+    <result column="userip" property="userip" jdbcType="VARCHAR" />
+    <result column="attachment" property="attachment" jdbcType="TINYINT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.lovegis.pojo.ForumPost" extends="BaseResultMap" >
+    <result column="message" property="message" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    tid, position, pid, fid, first, author, author_uid, author_account, subject, dateline, 
+    userip, attachment
+  </sql>
+  <sql id="Blob_Column_List" >
+    message
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.lovegis.pojo.ForumPostExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from forum_post
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.lovegis.pojo.ForumPostExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from forum_post
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="com.lovegis.pojo.ForumPostKey" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from forum_post
+    where tid = #{tid,jdbcType=INTEGER}
+      and position = #{position,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.lovegis.pojo.ForumPostKey" >
+    delete from forum_post
+    where tid = #{tid,jdbcType=INTEGER}
+      and position = #{position,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.lovegis.pojo.ForumPostExample" >
+    delete from forum_post
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.lovegis.pojo.ForumPost" >
+    insert into forum_post (tid, position, pid, 
+      fid, first, author, 
+      author_uid, author_account, subject, 
+      dateline, userip, attachment, 
+      message)
+    values (#{tid,jdbcType=INTEGER}, #{position,jdbcType=INTEGER}, #{pid,jdbcType=INTEGER}, 
+      #{fid,jdbcType=INTEGER}, #{first,jdbcType=TINYINT}, #{author,jdbcType=VARCHAR}, 
+      #{authorUid,jdbcType=INTEGER}, #{authorAccount,jdbcType=VARCHAR}, #{subject,jdbcType=VARCHAR}, 
+      #{dateline,jdbcType=BIGINT}, #{userip,jdbcType=VARCHAR}, #{attachment,jdbcType=TINYINT}, 
+      #{message,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lovegis.pojo.ForumPost" >
+    insert into forum_post
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="tid != null" >
+        tid,
+      </if>
+      <if test="position != null" >
+        position,
+      </if>
+      <if test="pid != null" >
+        pid,
+      </if>
+      <if test="fid != null" >
+        fid,
+      </if>
+      <if test="first != null" >
+        first,
+      </if>
+      <if test="author != null" >
+        author,
+      </if>
+      <if test="authorUid != null" >
+        author_uid,
+      </if>
+      <if test="authorAccount != null" >
+        author_account,
+      </if>
+      <if test="subject != null" >
+        subject,
+      </if>
+      <if test="dateline != null" >
+        dateline,
+      </if>
+      <if test="userip != null" >
+        userip,
+      </if>
+      <if test="attachment != null" >
+        attachment,
+      </if>
+      <if test="message != null" >
+        message,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="tid != null" >
+        #{tid,jdbcType=INTEGER},
+      </if>
+      <if test="position != null" >
+        #{position,jdbcType=INTEGER},
+      </if>
+      <if test="pid != null" >
+        #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="fid != null" >
+        #{fid,jdbcType=INTEGER},
+      </if>
+      <if test="first != null" >
+        #{first,jdbcType=TINYINT},
+      </if>
+      <if test="author != null" >
+        #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="authorUid != null" >
+        #{authorUid,jdbcType=INTEGER},
+      </if>
+      <if test="authorAccount != null" >
+        #{authorAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="subject != null" >
+        #{subject,jdbcType=VARCHAR},
+      </if>
+      <if test="dateline != null" >
+        #{dateline,jdbcType=BIGINT},
+      </if>
+      <if test="userip != null" >
+        #{userip,jdbcType=VARCHAR},
+      </if>
+      <if test="attachment != null" >
+        #{attachment,jdbcType=TINYINT},
+      </if>
+      <if test="message != null" >
+        #{message,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.lovegis.pojo.ForumPostExample" resultType="java.lang.Integer" >
+    select count(*) from forum_post
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update forum_post
+    <set >
+      <if test="record.tid != null" >
+        tid = #{record.tid,jdbcType=INTEGER},
+      </if>
+      <if test="record.position != null" >
+        position = #{record.position,jdbcType=INTEGER},
+      </if>
+      <if test="record.pid != null" >
+        pid = #{record.pid,jdbcType=INTEGER},
+      </if>
+      <if test="record.fid != null" >
+        fid = #{record.fid,jdbcType=INTEGER},
+      </if>
+      <if test="record.first != null" >
+        first = #{record.first,jdbcType=TINYINT},
+      </if>
+      <if test="record.author != null" >
+        author = #{record.author,jdbcType=VARCHAR},
+      </if>
+      <if test="record.authorUid != null" >
+        author_uid = #{record.authorUid,jdbcType=INTEGER},
+      </if>
+      <if test="record.authorAccount != null" >
+        author_account = #{record.authorAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.subject != null" >
+        subject = #{record.subject,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dateline != null" >
+        dateline = #{record.dateline,jdbcType=BIGINT},
+      </if>
+      <if test="record.userip != null" >
+        userip = #{record.userip,jdbcType=VARCHAR},
+      </if>
+      <if test="record.attachment != null" >
+        attachment = #{record.attachment,jdbcType=TINYINT},
+      </if>
+      <if test="record.message != null" >
+        message = #{record.message,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update forum_post
+    set tid = #{record.tid,jdbcType=INTEGER},
+      position = #{record.position,jdbcType=INTEGER},
+      pid = #{record.pid,jdbcType=INTEGER},
+      fid = #{record.fid,jdbcType=INTEGER},
+      first = #{record.first,jdbcType=TINYINT},
+      author = #{record.author,jdbcType=VARCHAR},
+      author_uid = #{record.authorUid,jdbcType=INTEGER},
+      author_account = #{record.authorAccount,jdbcType=VARCHAR},
+      subject = #{record.subject,jdbcType=VARCHAR},
+      dateline = #{record.dateline,jdbcType=BIGINT},
+      userip = #{record.userip,jdbcType=VARCHAR},
+      attachment = #{record.attachment,jdbcType=TINYINT},
+      message = #{record.message,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update forum_post
+    set tid = #{record.tid,jdbcType=INTEGER},
+      position = #{record.position,jdbcType=INTEGER},
+      pid = #{record.pid,jdbcType=INTEGER},
+      fid = #{record.fid,jdbcType=INTEGER},
+      first = #{record.first,jdbcType=TINYINT},
+      author = #{record.author,jdbcType=VARCHAR},
+      author_uid = #{record.authorUid,jdbcType=INTEGER},
+      author_account = #{record.authorAccount,jdbcType=VARCHAR},
+      subject = #{record.subject,jdbcType=VARCHAR},
+      dateline = #{record.dateline,jdbcType=BIGINT},
+      userip = #{record.userip,jdbcType=VARCHAR},
+      attachment = #{record.attachment,jdbcType=TINYINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lovegis.pojo.ForumPost" >
+    update forum_post
+    <set >
+      <if test="pid != null" >
+        pid = #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="fid != null" >
+        fid = #{fid,jdbcType=INTEGER},
+      </if>
+      <if test="first != null" >
+        first = #{first,jdbcType=TINYINT},
+      </if>
+      <if test="author != null" >
+        author = #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="authorUid != null" >
+        author_uid = #{authorUid,jdbcType=INTEGER},
+      </if>
+      <if test="authorAccount != null" >
+        author_account = #{authorAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="subject != null" >
+        subject = #{subject,jdbcType=VARCHAR},
+      </if>
+      <if test="dateline != null" >
+        dateline = #{dateline,jdbcType=BIGINT},
+      </if>
+      <if test="userip != null" >
+        userip = #{userip,jdbcType=VARCHAR},
+      </if>
+      <if test="attachment != null" >
+        attachment = #{attachment,jdbcType=TINYINT},
+      </if>
+      <if test="message != null" >
+        message = #{message,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where tid = #{tid,jdbcType=INTEGER}
+      and position = #{position,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.lovegis.pojo.ForumPost" >
+    update forum_post
+    set pid = #{pid,jdbcType=INTEGER},
+      fid = #{fid,jdbcType=INTEGER},
+      first = #{first,jdbcType=TINYINT},
+      author = #{author,jdbcType=VARCHAR},
+      author_uid = #{authorUid,jdbcType=INTEGER},
+      author_account = #{authorAccount,jdbcType=VARCHAR},
+      subject = #{subject,jdbcType=VARCHAR},
+      dateline = #{dateline,jdbcType=BIGINT},
+      userip = #{userip,jdbcType=VARCHAR},
+      attachment = #{attachment,jdbcType=TINYINT},
+      message = #{message,jdbcType=LONGVARCHAR}
+    where tid = #{tid,jdbcType=INTEGER}
+      and position = #{position,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lovegis.pojo.ForumPost" >
+    update forum_post
+    set pid = #{pid,jdbcType=INTEGER},
+      fid = #{fid,jdbcType=INTEGER},
+      first = #{first,jdbcType=TINYINT},
+      author = #{author,jdbcType=VARCHAR},
+      author_uid = #{authorUid,jdbcType=INTEGER},
+      author_account = #{authorAccount,jdbcType=VARCHAR},
+      subject = #{subject,jdbcType=VARCHAR},
+      dateline = #{dateline,jdbcType=BIGINT},
+      userip = #{userip,jdbcType=VARCHAR},
+      attachment = #{attachment,jdbcType=TINYINT}
+    where tid = #{tid,jdbcType=INTEGER}
+      and position = #{position,jdbcType=INTEGER}
+  </update>
+</mapper>
