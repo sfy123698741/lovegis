@@ -5,9 +5,19 @@ public class Users {
 
     private String account;
 
-    private String password;
+    public Users(String account, String password) {
+		super();
+		this.account = account;
+		this.password = password;
+	}
 
-    public Integer getUid() {
+	private String password;
+
+    public Users() {
+		super();
+	}
+
+	public Integer getUid() {
         return uid;
     }
 

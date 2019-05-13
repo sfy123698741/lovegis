@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lovegis.mapper.ForumMessageMapper"> 
+<select id="howManyMsg"  resultType="int">
+select count(*) from forum_msg where rd_uid=#{uid}
+</select>
+<select id="howManyNewMsg"  resultType="int">
+	select count(*) from forum_msg where rd_uid=#{uid} and new=1;
+	</select>
+<select id="howManyOldMsg"  resultType="int">
+select count(*) from forum_msg where rd_uid=#{uid} and new=0
+	</select>
+<insert id="addMsg">
+insert into forum_msg (author,rd_uid,subject,dateline,type,fid,tid,position)values (#{forumMsg.author},#{forumMsg.rd_uid},#{forumMsg.subject},#{forumMsg.dateline},#{forumMsg.type},#{forumMsg.fid},#{forumMsg.tid},#{forumMsg.position})
+	</insert>
+<update id="makeMsgOld">
+ update forum_msg set new=0 where mid=#{mid};
+	</update>
+<select id="getMsgPage"  resultType="int">
+	 select * from forum_msg where rd_uid=#{uid} and new=#{page} order by dateline desc limit ?,?
+	</select>
+</mapper>
+
+

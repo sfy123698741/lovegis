@@ -1,0 +1,14 @@
+package com.lov.service;
+
+import com.heygis.beans.NewMember;
+import com.heygis.dao.MemberDaoImpl;
+
+public class JoinUSService {
+	MemberDaoImpl mdi = null;
+	public JoinUSService(){
+		mdi = new MemberDaoImpl();
+	}
+	public boolean addMember(NewMember member){
+		return mdi.addMember(member);
+	}
+}

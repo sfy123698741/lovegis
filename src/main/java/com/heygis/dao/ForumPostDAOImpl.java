@@ -4,10 +4,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
 
-import com.heygis.beans.ForumPost;
 import com.heygis.beans.ForumPostPage;
-import com.heygis.dao.DB.DBConnection;
 import com.heygis.dao.interfaces.ForumPostDAO;
+import com.lovegis.pojo.ForumPost;
 
 public class ForumPostDAOImpl extends DAOSupport implements ForumPostDAO {
 
@@ -19,16 +18,16 @@ public class ForumPostDAOImpl extends DAOSupport implements ForumPostDAO {
 		int pid = 0;
 		try {
 			if(rs.next())
-				pid = rs.getInt(1)+1;
+				pid = rs.getInt(1)+1;  //根据查询的pid（最后一个序号）+1作为新的序号（sfy为什么不设置成自增）
 //			System.out.println("pid="+pid);
 			sql = "insert into forum_post (pid,fid,tid,first,author,author_uid,author_account"
 					+ ",subject,dateline,message,userip,attachment) values (?,?,?,?,?,?,?,?,?,?,?,?);";
 			if(this.execUpdate(sql, pid ,post.getFid(),post.getTid(),post.getFirst(),post.getAuthor(),
 					post.getAuthorUid(),post.getAuthorAccount(),post.getSubject(),new Date().getTime(),post.getMessage(),
-					post.getUserip(),post.getAttchment()) == 1){
-				sql = "update forum_thread SET lastpost=? ,lastposter=? ,replies=replies+1 where tid=?;";
+					post.getUserip(),post.getAttchment()) == 1){//如果插入成功
+				sql = "update forum_thread SET lastpost=? ,lastposter=? ,replies=replies+1 where tid=?;";//更新帖子的最后一个提交者
 				this.execUpdate(sql, new Date().getTime(),post.getAuthor(),post.getTid());
-				int posi = this.LAST_INSERT_ID();
+				int posi = this.LAST_INSERT_ID();//返回最后一个主键
 				this.close();
 				return posi;
 			}else{
@@ -60,7 +59,7 @@ public class ForumPostDAOImpl extends DAOSupport implements ForumPostDAO {
 		}
 	}
 
-	@SuppressWarnings("finally")
+	//@SuppressWarnings("finally")
 	@Override
 	public ForumPostPage getPostPage(int tid, int page) {
 		int begin = (page-1) * 30;

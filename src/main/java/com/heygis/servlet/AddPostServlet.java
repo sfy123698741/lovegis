@@ -9,10 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.heygis.beans.ForumPost;
-import com.heygis.beans.ForumThread;
 import com.heygis.beans.User;
 import com.heygis.service.AddPostService;
+import com.lovegis.pojo.ForumPost;
 
 public class AddPostServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -47,7 +46,7 @@ public class AddPostServlet extends HttpServlet {
 			posi = addPostService.addPostWithMsg(post,t_uid,subject);
 		}else{
 			posi = addPostService.addPost(post,t_uid,subject);
-		}
+		}//sfy ：这里也被分成两个方法了
 		if(posi != 0){
 			response.sendRedirect(request.getHeader("referer"));
 		}else{

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lovegis.mapper.SourceMapper"> 
+<select id="getSourceOne"  resultType="SourceOne">
+	<!--select * from sourceone where name LIKE'${searchCtx}'-->
+	select * from sourceone where name LIKE #{searchCtx}
+	</select>
+	<select id="getSourceTwo"  parameterType="String" resultType="users"> 
+	select * from sourceTwo where name LIKE #{searchCtx}
+	</select>
+	<select id="getSourceThree" parameterType="String"  resultType="users">
+	select * from sourceThree where  name LIKE #{searchCtx}
+	</select>
+	<select id="getSourceFour" parameterType="String"  resultType="users" >
+	select * from sourceFour where name LIKE #{searchCtx}
+	</select>
+	<update id="">
+	update #{sourceType} set download_times = download_times+1 where name=#{sourceName}
+	</update>
+</mapper>

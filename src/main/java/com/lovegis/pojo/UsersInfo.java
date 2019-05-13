@@ -3,32 +3,29 @@ package com.lovegis.pojo;
 import java.util.Date;
 
 public class UsersInfo {
-    private Integer uid;
-
-    private String account;
-
+    public UsersInfo() {
+		super();
+	}
+    
+    public UsersInfo(String account, String grade, String nickname) {
+		super();
+		this.account = account;
+		this.grade = grade;
+		this.nickname = nickname;
+	}
+	private Integer uid;
+	private String account;
     private Integer age;
-
     private String gender;
-
     private String mail;
-
     private String tel;
-
     private String qq;
-
     private String selfintroduction;
-
     private Date birthday;
-
     private Integer identityId;
-
     private String name;
-
     private String iconImg;
-
     private String grade;
-
     private String nickname;
 
     public Integer getUid() {

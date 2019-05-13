@@ -1,7 +1,14 @@
 package com.heygis.beans;
 
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 
+import org.springframework.stereotype.Component;
+
+import com.lovegis.pojo.Users;
+import com.lovegis.pojo.UsersInfo;
+import com.lovegis.util.Util;
 public class User {
 	private int uid;
 	private String account;
@@ -32,7 +39,20 @@ public class User {
 		this.selfIntroduction = selfIntroduction;
 		this.iconImg = iconImg;
 	}
-
+	public Users getusers(User user) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+		Users users = new Users();
+		users.setAccount(user.getAccount());
+		users.setPassword(Util.EncoderByMd5(user.getPassWord()));
+		return users;
+	}
+	public UsersInfo getusersInfo(User user) {
+		UsersInfo usersInfo = new UsersInfo();
+		usersInfo.setUid(user.getUid());
+		usersInfo.setAccount(user.getAccount());
+		usersInfo.setNickname(user.getNickName());
+		usersInfo.setGrade(user.getGrade());
+		return usersInfo;
+	}
 	public int getUid() {
 		return uid;
 	}

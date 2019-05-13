@@ -2,14 +2,20 @@ package com.lovegis.mapper;
 
 import java.sql.ResultSet;
 
-import com.heygis.beans.User;
+import org.apache.ibatis.annotations.Param;
 
-public interface UserMapper {
-	public boolean validateUser(String account,String password);
-	public int addUser(User user);
-	public User getUser(String account);
-	public boolean judgeEmail(String account);
-	public boolean judgeNickName(String nickName);
-	public boolean fillInfo(User user);
-	public boolean updateIconImg(User user);
+import com.heygis.beans.User;
+import com.lovegis.pojo.Users;
+import com.lovegis.pojo.UsersInfo;
+
+public interface UserMapper extends BaseMapper{
+	public String validateUser(String account);
+	public int addUser(@Param("users")Users users);
+	public int addUserInfo(@Param("usersInfo")UsersInfo usersInfo);
+	public UsersInfo getUser(String account);
+	public Users judgeEmail(String account);
+	
+	public UsersInfo judgeNickName(String nickName);
+	public boolean fillInfo(@Param("usersInfo")UsersInfo usersInfo);
+	public int updateIconImg(String icon_img,String account);
 }

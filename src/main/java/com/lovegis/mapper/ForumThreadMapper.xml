@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lovegis.mapper.ForumThreadMapper"> 
+<insert id="addThread"   >
+insert into forum_thread (fid,typeid,sortid,author,author_uid,author_account,subject,dateline,lastpost,attachment)
+values(#{thread.fid},#{thread.typeid},#{thread.sortid},#{thread.author},#{thread.authorUid},#{thread.authorAccount},#{thread.subject},#{thread.dateline},#{thread.lastpost},#{thread.attachment})
+
+</insert>
+
+<update id="delThread">
+update forum_thread display=0 where tid=#{tid}
+</update>
+
+<select id="getThreadPage"  resultType="forumThread">
+	select forum_thread.*,users_info.nickname from forum_thread,users_info 
+where forum_thread.author_uid=users_info.uid and fid=#{fid} and display=1 order by lastpost DESC limit #{begin},#{end}
+
+	</select>
+
+<select id="getThreadPageByUid"  resultType="forumThread">
+	 select forum_thread.*,users_info.nickname from forum_thread,users_info 
+	where forum_thread.author_uid=users_info.uid and author_uid=#{uid} and display=1 order by dateline desc limit #{begin},#{end}
+</select>
+<select id="getThreadPageByUid"  >
+select count(*) from forum_thread where fid=#{fid} and display=1
+</select>
+</mapper>

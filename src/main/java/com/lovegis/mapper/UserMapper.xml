@@ -1,8 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.lovegis.mapper.UserMapper.xml"> 
+<mapper namespace="com.lovegis.mapper.UserMapper"> 
 	<select id="validateUser" parameterType="String" resultType="String">
 	select password from users where account=#{account}
 	</select>
-	
+	<insert id=""></insert>
+	 <insert id="addUser" parameterType="users" >
+	 insert into users (account,password) values (#{users.account},#{users.password})
+	  </insert>
+	<insert id="addUserInfo" parameterType="usersInfo" >
+	 insert into users_info (uid,account,nickname,grade) values (#{usersInfo.uid},#{usersInfo.account},#{usersInfo.nickname},#{usersInfo.grade})
+	  </insert>
+	<select id="getUser" parameterType="String" resultType="usersInfo">
+	select uid,account,nickname,gender,grade,QQ,tel,selfintroduction,identity_id,icon_img from users_info where account=#{account}
+	</select>
+		 <select id="judgeEmail" parameterType="String" resultType="users">
+		 select * from users where account=#{account}
+		  </select>	
+		 <select id="judgeNickName" parameterType="String" resultType="usersInfo"> 
+		 select * from users_info where nickname=#{nickName}"
+		 </select>
+		 <update id="fillInfo" parameterType="usersInfo" >
+		 update users_info set nickname=#{usersInfo.nickname},grade=#{usersInfo.grade},selfintroduction=#{usersInfo.selfintroduction},gender=#{usersInfo.gender},QQ=#{usersInfo.QQ},tel=#{usersInfo.tel}where account=#{usersInfo.account}
+		 </update>
+		 <update id="updateIconImg" parameterType="String" > 
+		 UPDATE users_info SET icon_img = #{icon_img} WHERE account = #{account}
+		 </update>
+		 
 </mapper>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lovegis.mapper.FeedbackMapper"> 
+<select id="addMsg"  resultType="int">
+insert into feedback (account,time,feedbackcontent) values (#{feedbackMsg.account},#{feedbackMsg.time},#{feedbackMsg.feedbackcontent})
+	</select>
+<select id="getMsg"  resultType="int">
+select feedback.*,users_info.nickname,users_info.icon_img from feedback,users_info where feedback.account = users_info.account order by id desc
+	</select>
+</mapper>

@@ -11,12 +11,13 @@ public class ForumsThreadPage {
 	private int totalPageNum;
 	private ForumThread[] threadArray;
 	
-	public ForumsThreadPage(int fid, int page) {
+	public ForumsThreadPage(int fid, int page,int size ,ForumThread[] threadArray ) {
 		this.fid = fid;
 		this.page = page;
 		beginPosi = page * 10 + 1;
 		endPosi = beginPosi + 29;
-		threadArray = new ForumThread[30];
+		threadArray = threadArray;
+				//new ForumThread[30];
 		thread_number = 0;
 		size=0;
 	}

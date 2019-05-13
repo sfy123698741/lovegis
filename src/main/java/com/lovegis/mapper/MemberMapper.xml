@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lovegis.mapper.MemberMapper"> 
+<insert id="addMember"  >
+	INSERT INTO newmember (name,profession,tel,QQ,other,selfintro,goal) VALUES (#{newMember.name},#{newMember.profession},#{newMember.tel},#{newMember.QQ},#{newMember.tel},#{newMember.other},#{newMember.selfintro},#{newMember.goal})
+	</insert>
+</mapper>

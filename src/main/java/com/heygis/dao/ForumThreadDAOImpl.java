@@ -4,12 +4,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
 
-import com.heygis.beans.ForumPost;
-import com.heygis.beans.ForumPostPage;
 import com.heygis.beans.ForumThread;
 import com.heygis.beans.ForumsThreadPage;
 import com.heygis.dao.interfaces.ForumThreadDAO;
 import com.heygis.service.AddPostService;
+import com.lovegis.pojo.ForumPost;
 
 public class ForumThreadDAOImpl extends DAOSupport implements ForumThreadDAO {
 

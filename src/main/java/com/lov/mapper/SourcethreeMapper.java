@@ -1,7 +1,7 @@
 package com.lov.mapper;
 
-import com.lovegis.pojo.Sourcethree;
-import com.lovegis.pojo.SourcethreeExample;
+import com.lovegis.pojo.SourceThree;
+import com.lovegis.pojo.SourceThree;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
@@ -12,19 +12,19 @@ public interface SourcethreeMapper {
 
     int deleteByPrimaryKey(Integer rId);
 
-    int insert(Sourcethree record);
+    int insert(SourceThree record);
 
-    int insertSelective(Sourcethree record);
+    int insertSelective(SourceThree record);
 
-    List<Sourcethree> selectByExample(SourcethreeExample example);
+    List<SourceThree> selectByExample(SourcethreeExample example);
 
-    Sourcethree selectByPrimaryKey(Integer rId);
+    SourceThree selectByPrimaryKey(Integer rId);
 
-    int updateByExampleSelective(@Param("record") Sourcethree record, @Param("example") SourcethreeExample example);
+    int updateByExampleSelective(@Param("record") SourceThree record, @Param("example") SourcethreeExample example);
 
-    int updateByExample(@Param("record") Sourcethree record, @Param("example") SourcethreeExample example);
+    int updateByExample(@Param("record") SourceThree record, @Param("example") SourcethreeExample example);
 
-    int updateByPrimaryKeySelective(Sourcethree record);
+    int updateByPrimaryKeySelective(SourceThree record);
 
-    int updateByPrimaryKey(Sourcethree record);
+    int updateByPrimaryKey(SourceThree record);
 }

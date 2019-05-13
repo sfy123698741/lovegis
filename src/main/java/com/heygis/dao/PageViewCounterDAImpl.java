@@ -1,6 +1,5 @@
 package com.heygis.dao;
 
-import java.util.Date;
 import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.util.List;

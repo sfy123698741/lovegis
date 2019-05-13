@@ -151,8 +151,8 @@ public class SourceServie {
 	public List searchByCtx(String sourceType,String searchCtx){
 		if(sourceType.equals("1")){
 			List<SourceOne> newlist = new ArrayList<SourceOne>();
-			List<SourceOne> sourceOneList = sdi.getSourceOne();
-			for(SourceOne source : sourceOneList){
+			List<SourceOne> sourceOneList = sdi.getSourceOne();  
+			for(SourceOne source : sourceOneList){  //sfy 遍历集合找到name中包含搜索条件的
 				String name = source.getName().toLowerCase();
 				int result = name.indexOf(searchCtx.toLowerCase());
 				if(result != -1){

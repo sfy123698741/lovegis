@@ -1,7 +1,7 @@
 package com.heygis.dao.interfaces;
 
-import com.heygis.beans.ForumPost;
 import com.heygis.beans.ForumPostPage;
+import com.lovegis.pojo.ForumPost;
 
 public interface ForumPostDAO {
 	public int addPost(ForumPost post);

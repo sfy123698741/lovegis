@@ -1,7 +1,7 @@
 package com.lov.mapper;
 
-import com.lovegis.pojo.Sourcetwo;
-import com.lovegis.pojo.SourcetwoExample;
+import com.lovegis.pojo.SourceTwo;
+import com.lovegis.pojo.SourceTwo;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
@@ -12,19 +12,19 @@ public interface SourcetwoMapper {
 
     int deleteByPrimaryKey(Integer id);
 
-    int insert(Sourcetwo record);
+    int insert(SourceTwo record);
 
-    int insertSelective(Sourcetwo record);
+    int insertSelective(SourceTwo record);
 
-    List<Sourcetwo> selectByExample(SourcetwoExample example);
+    List<SourceTwo> selectByExample(SourcetwoExample example);
 
-    Sourcetwo selectByPrimaryKey(Integer id);
+    SourceTwo selectByPrimaryKey(Integer id);
 
-    int updateByExampleSelective(@Param("record") Sourcetwo record, @Param("example") SourcetwoExample example);
+    int updateByExampleSelective(@Param("record") SourceTwo record, @Param("example") SourcetwoExample example);
 
-    int updateByExample(@Param("record") Sourcetwo record, @Param("example") SourcetwoExample example);
+    int updateByExample(@Param("record") SourceTwo record, @Param("example") SourcetwoExample example);
 
-    int updateByPrimaryKeySelective(Sourcetwo record);
+    int updateByPrimaryKeySelective(SourceTwo record);
 
-    int updateByPrimaryKey(Sourcetwo record);
+    int updateByPrimaryKey(SourceTwo record);
 }

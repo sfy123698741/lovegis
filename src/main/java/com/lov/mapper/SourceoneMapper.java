@@ -1,7 +1,7 @@
 package com.lov.mapper;
 
-import com.lovegis.pojo.Sourceone;
-import com.lovegis.pojo.SourceoneExample;
+import com.lovegis.pojo.SourceOne;
+import com.lovegis.pojo.SourceOne;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
@@ -12,19 +12,19 @@ public interface SourceoneMapper {
 
     int deleteByPrimaryKey(Integer id);
 
-    int insert(Sourceone record);
+    int insert(SourceOne record);
 
-    int insertSelective(Sourceone record);
+    int insertSelective(SourceOne record);
 
-    List<Sourceone> selectByExample(SourceoneExample example);
+    List<SourceOne> selectByExample(SourceoneExample example);
 
-    Sourceone selectByPrimaryKey(Integer id);
+    SourceOne selectByPrimaryKey(Integer id);
 
-    int updateByExampleSelective(@Param("record") Sourceone record, @Param("example") SourceoneExample example);
+    int updateByExampleSelective(@Param("record") SourceOne record, @Param("example") SourceoneExample example);
 
-    int updateByExample(@Param("record") Sourceone record, @Param("example") SourceoneExample example);
+    int updateByExample(@Param("record") SourceOne record, @Param("example") SourceoneExample example);
 
-    int updateByPrimaryKeySelective(Sourceone record);
+    int updateByPrimaryKeySelective(SourceOne record);
 
-    int updateByPrimaryKey(Sourceone record);
+    int updateByPrimaryKey(SourceOne record);
 }

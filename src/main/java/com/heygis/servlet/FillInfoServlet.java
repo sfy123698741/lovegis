@@ -16,6 +16,7 @@ public class FillInfoServlet extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		User user = new User(
 				((User)request.getSession().getAttribute("user")).getUid(),
 				request.getParameter("account"),

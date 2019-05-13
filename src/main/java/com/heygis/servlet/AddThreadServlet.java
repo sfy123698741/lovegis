@@ -9,10 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.heygis.beans.ForumPost;
 import com.heygis.beans.ForumThread;
 import com.heygis.beans.User;
 import com.heygis.service.ForumsService;
+import com.lovegis.pojo.ForumPost;
 
 /**
  * Servlet implementation class AddThreadServlet

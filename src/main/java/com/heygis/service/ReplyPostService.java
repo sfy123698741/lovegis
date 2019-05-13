@@ -1,12 +1,11 @@
 package com.heygis.service;
 
 import com.heygis.beans.ForumMessage;
-import com.heygis.beans.ForumPost;
-import com.heygis.beans.ForumPostPage;
 import com.heygis.dao.ForumMessageDAOImpl;
 import com.heygis.dao.ForumPostDAOImpl;
 import com.heygis.dao.interfaces.ForumMessageDAO;
 import com.heygis.dao.interfaces.ForumPostDAO;
+import com.lovegis.pojo.ForumPost;
 
 public class ReplyPostService {
 	private ForumPostDAO postDAO = null;

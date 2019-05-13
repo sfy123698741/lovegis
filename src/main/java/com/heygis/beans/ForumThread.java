@@ -94,14 +94,14 @@ public class ForumThread {
 	public Date getDateline() {
 		return dateline;
 	}
-	public void setDateline(Date dateline) {
-		this.dateline = dateline;
+	public void setDateline(Long dateline) {
+		this.dateline = new Date(dateline);
 	}
 	public Date getLastpost() {
 		return lastpost;
 	}
-	public void setLastpost(Date lastpost) {
-		this.lastpost = lastpost;
+	public void setLastpost(Long lastpost) {
+		this.lastpost = new Date(lastpost);
 	}
 	public String getLastposter() {
 		return lastposter;

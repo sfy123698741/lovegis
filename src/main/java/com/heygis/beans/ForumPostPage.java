@@ -1,5 +1,7 @@
 package com.heygis.beans;
 
+import com.lovegis.pojo.ForumPost;
+
 public class ForumPostPage {
 	private int fid;
 	private int tid;

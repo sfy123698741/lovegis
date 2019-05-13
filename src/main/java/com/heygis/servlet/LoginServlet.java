@@ -1,6 +1,7 @@
 package com.heygis.servlet;
 
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -23,14 +24,19 @@ public class LoginServlet extends HttpServlet {
 		String account = request.getParameter("account");
 		String password = request.getParameter("password");
 		LoginService loginService = new LoginService();
-		if(loginService.login(account,password)){
-			request.getSession().setAttribute("loged",true);
-			request.getSession().setAttribute("user",loginService.getUser(account) );
+		try {
+			if(loginService.login(account,password)){
+				request.getSession().setAttribute("loged",true);
+				request.getSession().setAttribute("user",loginService.getUser(account) );
 //			System.out.println(request.getHeader("referer"));
 //			response.sendRedirect(request.getHeader("referer"));
-			response.getWriter().println(1);//这儿是干什么？
-		}else{
-			response.getWriter().println(0);
+				response.getWriter().println(1);//这儿是干什么？
+			}else{
+				response.getWriter().println(0);
+			}
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 }

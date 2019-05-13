@@ -10,10 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.heygis.beans.ForumMessage;
-import com.heygis.beans.ForumPost;
 import com.heygis.beans.User;
-import com.heygis.service.AddPostService;
 import com.heygis.service.ReplyPostService;
+import com.lovegis.pojo.ForumPost;
 
 /**
  * Servlet implementation class AddReplyPostServlet

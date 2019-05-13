@@ -2,6 +2,8 @@ package com.heygis.filter;
 
 import java.io.IOException;
 
+import javax.annotation.Resource;
+import javax.annotation.sql.DataSourceDefinition;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -14,9 +16,10 @@ import javax.servlet.http.HttpSession;
 
 import com.heygis.beans.User;
 import com.heygis.util.PageViewCounter;
+import com.lovegis.service.OtherPageViewCounter;
 
 public class CommonFilter implements Filter {
-
+	@Resource OtherPageViewCounter otherPageViewCounter;
     public CommonFilter() {
         // TODO Auto-generated constructor stub
     }
@@ -26,6 +29,7 @@ public class CommonFilter implements Filter {
 		boolean loged = false;
 		HttpServletRequest hsrequest=(HttpServletRequest)request;
 		HttpSession session = hsrequest.getSession();
+		
 		if(session.getAttribute("loged") != null){ 
 			if(session.getAttribute("loged").equals(true)){
 				loged = true;
@@ -40,8 +44,9 @@ public class CommonFilter implements Filter {
 			request.setAttribute("uid", -1);
 		}
 		
-		if(session.isNew()) 
-			PageViewCounter.addViewer(request.getRemoteAddr(),hsrequest.getHeader("User-Agent"));			
+		if(session.isNew()) //如果session 是新的 就添加浏览者
+			otherPageViewCounter.addViewer(request.getRemoteAddr(),hsrequest.getHeader("User-Agent"));			
+//		PageViewCounter.addViewer(request.getRemoteAddr(),hsrequest.getHeader("User-Agent"));			
 		
 		chain.doFilter(request, response);
 	}

@@ -8,7 +8,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
     <!-- 配置别名 -->
     <typeAliases>
         <!-- 批量扫描别名 -->
-        <package name="com.shuangyulin.po"/>
+        <package name="com.lovegis.pojo"/>
     </typeAliases>
 
     <!-- 配置mapper

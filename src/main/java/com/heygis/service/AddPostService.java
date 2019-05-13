@@ -1,9 +1,9 @@
 package com.heygis.service;
 
 import com.heygis.beans.ForumMessage;
-import com.heygis.beans.ForumPost;
 import com.heygis.dao.ForumMessageDAOImpl;
 import com.heygis.dao.ForumPostDAOImpl;
+import com.lovegis.pojo.ForumPost;
 
 public class AddPostService {
 	private static ForumPostDAOImpl fpdi = new ForumPostDAOImpl();

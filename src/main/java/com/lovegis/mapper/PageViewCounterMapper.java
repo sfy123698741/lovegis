@@ -1,8 +1,9 @@
 package com.lovegis.mapper;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 public interface PageViewCounterMapper {
 	int getLastNum();
-	boolean store(int num, List<String> ip, List<Long> time, List<String> userAgent);
+	boolean store( String ip,Timestamp timestamp, String userAgent);
 }

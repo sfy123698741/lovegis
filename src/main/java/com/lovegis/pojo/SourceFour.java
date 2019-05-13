@@ -1,6 +1,8 @@
 package com.lovegis.pojo;
 
-public class Sourceone {
+import com.heygis.beans.Source;
+
+public class SourceFour extends Source{
     private Integer id;
 
     private String name;
@@ -17,9 +19,9 @@ public class Sourceone {
 
     private Integer downloadTimes;
 
-    private String level;
-
     private String uploader;
+
+    private String filetype;
 
     public Integer getId() {
         return id;
@@ -85,19 +87,19 @@ public class Sourceone {
         this.downloadTimes = downloadTimes;
     }
 
-    public String getLevel() {
-        return level;
-    }
-
-    public void setLevel(String level) {
-        this.level = level == null ? null : level.trim();
-    }
-
     public String getUploader() {
         return uploader;
     }
 
     public void setUploader(String uploader) {
         this.uploader = uploader == null ? null : uploader.trim();
+    }
+
+    public String getFiletype() {
+        return filetype;
+    }
+
+    public void setFiletype(String filetype) {
+        this.filetype = filetype == null ? null : filetype.trim();
     }
 }

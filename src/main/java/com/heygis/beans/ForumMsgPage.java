@@ -7,12 +7,13 @@ public class ForumMsgPage {
 	private int msg_number;
 	private ForumMessage[] msgArray;
 	
-	public ForumMsgPage(int uid, int page) {
+	public ForumMsgPage(int uid, int page,int size,ForumMessage[] ForumMessageList) {
 		this.uid = uid;
 		this.page = page;
-		this.size = 0;
+		this.size = size;
 		this.msg_number = 0;
-		this.msgArray = new ForumMessage[20];
+		this.msgArray =ForumMessageList;
+				//new ForumMessage[20];
 	}
 	public int getPage() {
 		return page;

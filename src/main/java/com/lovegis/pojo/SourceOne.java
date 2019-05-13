@@ -1,7 +1,9 @@
 package com.lovegis.pojo;
 
-public class Sourcethree {
-    private Integer rId;
+import com.heygis.beans.Source;
+
+public class SourceOne  extends Source{
+    private Integer id;
 
     private String name;
 
@@ -11,22 +13,22 @@ public class Sourcethree {
 
     private String downloadLink;
 
-    private String downloadLinkOffical;
-
     private String icon;
-
-    private Boolean cracking;
 
     private String uploadTime;
 
     private Integer downloadTimes;
 
-    public Integer getrId() {
-        return rId;
+    private String level;
+
+    private String uploader;
+
+    public Integer getId() {
+        return id;
     }
 
-    public void setrId(Integer rId) {
-        this.rId = rId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -61,28 +63,12 @@ public class Sourcethree {
         this.downloadLink = downloadLink == null ? null : downloadLink.trim();
     }
 
-    public String getDownloadLinkOffical() {
-        return downloadLinkOffical;
-    }
-
-    public void setDownloadLinkOffical(String downloadLinkOffical) {
-        this.downloadLinkOffical = downloadLinkOffical == null ? null : downloadLinkOffical.trim();
-    }
-
     public String getIcon() {
         return icon;
     }
 
     public void setIcon(String icon) {
         this.icon = icon == null ? null : icon.trim();
-    }
-
-    public Boolean getCracking() {
-        return cracking;
-    }
-
-    public void setCracking(Boolean cracking) {
-        this.cracking = cracking;
     }
 
     public String getUploadTime() {
@@ -99,5 +85,21 @@ public class Sourcethree {
 
     public void setDownloadTimes(Integer downloadTimes) {
         this.downloadTimes = downloadTimes;
+    }
+
+    public String getLevel() {
+        return level;
+    }
+
+    public void setLevel(String level) {
+        this.level = level == null ? null : level.trim();
+    }
+
+    public String getUploader() {
+        return uploader;
+    }
+
+    public void setUploader(String uploader) {
+        this.uploader = uploader == null ? null : uploader.trim();
     }
 }

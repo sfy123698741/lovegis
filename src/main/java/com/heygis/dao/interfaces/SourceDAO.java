@@ -6,10 +6,11 @@ import com.heygis.beans.SourceFour;
 import com.heygis.beans.SourceOne;
 import com.heygis.beans.SourceThree;
 import com.heygis.beans.SourceTwo;
+import com.lovegis.pojo.SourceFA;
 
 public interface SourceDAO {
-	public List<SourceOne> getSourceOne();
-	public List<SourceTwo> getSourceTwo();
+	public List<SourceFA> getSourceOne();
+	public List<SourceFA> getSourceTwo();
 	public List<SourceThree> getSourceThree();
 	public List<SourceFour> getSourceFour();
 	public boolean addCount(String sourceName);

@@ -6,39 +6,41 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.heygis.beans.SourceOne;
-import com.heygis.beans.SourceFour;
-import com.heygis.beans.SourceThree;
-import com.heygis.beans.SourceTwo;
 import com.heygis.dao.interfaces.SourceDAO;
+import com.lovegis.pojo.SourceFA;
+import com.lovegis.pojo.SourceOne;
+import com.lovegis.pojo.SourceTwo;;
 
 public class SourceDAOImpl extends DAOSupport implements SourceDAO{
 	@Override
-	public List<SourceOne> getSourceOne() {
+	public List<SourceFA> getSourceOne() {
 		SourceOne sourceOne = null;
-		List<SourceOne> sourceOneList = new ArrayList<SourceOne>();
+		List<SourceFA>  sourceOneList = new ArrayList<SourceFA>();
 		String sql = "select * from sourceone";
 		this.openConn();
 		ResultSet rs = this.execQuery(sql);
 		try {
 			while(rs.next()){
+				//SourceOne aFa=new SourceOne();;
+				
 				sourceOne = new SourceOne();
 				sourceOne.setName(rs.getString("name"));
 				sourceOne.setIntroduction(rs.getString("introduction"));
-				sourceOne.setFile_size(rs.getString("file_size"));
-				sourceOne.setDownload_link(rs.getString("download_link"));
+				sourceOne.setFileSize(rs.getString("file_size"));
+				sourceOne.setDownloadLink(rs.getString("download_link"));
 				sourceOne.setIcon(rs.getString("icon"));
-				sourceOne.setUpload_time(rs.getString("upload_time"));
-				sourceOne.setDownload_times(rs.getLong("download_times"));
+				sourceOne.setUploadTime(rs.getString("upload_time"));
+				sourceOne.setDownloadTimes(rs.getInt("download_times"));
 				sourceOne.setLevel(rs.getString("level"));
 				sourceOne.setUploader(rs.getString("uploader"));
-				sourceOneList.add(sourceOne);
+				sourceOneList.add(sourceOne);	
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		this.close();
 		return sourceOneList;
+				//.Cast<SourceFA>().ToList();;
 	}
 	@Override
 	public List<SourceTwo> getSourceTwo() {
